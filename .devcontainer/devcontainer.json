@@ -1,0 +1,7 @@
+{
+  "name": "fex-emu",
+  "build": {
+    "dockerfile": "Dockerfile",
+  },
+  "remoteUser": "root",
+}

@@ -1,0 +1,37 @@
+#!/usr/bin/make -f
+
+export DH_VERBOSE = 1
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# FEX-Emu targets AArch64 only
+DEB_HOST_ARCH ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
+
+ifneq ($(DEB_HOST_ARCH),arm64)
+$(error FEX-Emu only builds on arm64 hosts)
+endif
+
+BUILD_TYPE := Release
+
+CMAKE_OPTIONS := \
+	-DCMAKE_BUILD_TYPE=$(BUILD_TYPE) \
+	-DCMAKE_INSTALL_PREFIX=/usr \
+	-DCMAKE_INSTALL_SYSCONFDIR=/etc \
+	-DCMAKE_INSTALL_LOCALSTATEDIR=/var \
+	-DENABLE_LTO=ON \
+	-DENABLE_ASSERTIONS=OFF \
+	-DBUILD_FEXCONFIG=ON \
+	-DBUILD_THUNKS=OFF \
+	-DBUILD_FEX_LINUX_TESTS=OFF
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- $(CMAKE_OPTIONS)
+
+override_dh_auto_install:
+	dh_auto_install
+
+override_dh_missing:
+	dh_missing --fail-missing

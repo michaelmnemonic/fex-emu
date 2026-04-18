@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build: debian package",
+      "type": "shell",
+      "command": "${workspaceFolder}/packaging/build.sh",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "clean: debian package",
+      "type": "shell",
+      "command": "rm",
+      "args": [
+        "-rf",
+        "${workspaceFolder}/build-area"
+      ],
+      "problemMatcher": []
+    }
+  ]
+}

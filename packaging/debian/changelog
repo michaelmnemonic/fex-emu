@@ -1,0 +1,5 @@
+fex-emu (2604-1) unstable; urgency=medium
+
+  * Initial Debian packaging.
+
+ -- Michael Mnemonic <michaelmnameonic@posteo.eu>  Thu, 19 Jun 2025 00:00:00 +0000

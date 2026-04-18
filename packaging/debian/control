@@ -1,0 +1,46 @@
+Source: fex-emu
+Section: otherosfs
+Priority: optional
+Maintainer: Michael Mnemonic <michaelmnameonic@posteo.eu>
+Build-Depends: cmake (>= 3.14),
+               debhelper-compat (= 13),
+               clang [arm64],
+               pkg-config,
+Standards-Version: 4.7.0
+Homepage: https://fex-emu.com
+Vcs-Browser: https://github.com/FEX-Emu/FEX
+Vcs-Git: https://github.com/FEX-Emu/FEX.git
+Rules-Requires-Root: no
+Architecture: arm64
+
+Package: fex-emu
+Architecture: arm64
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         fex-emu-binfmt
+Suggests: fex-emu-config (= ${binary:Version})
+Description: Fast x86 and x86-64 emulator for AArch64
+ FEX-Emu is a fast user-mode x86 and x86-64 emulator for AArch64 hosts.
+ It allows running x86 and x86-64 binaries on ARM64 systems.
+ .
+ This package contains the main FEX emulator binaries including
+ FEXInterpreter, FEXServer, and related tools.
+
+Package: fex-emu-dev
+Section: libdevel
+Architecture: arm64
+Depends: ${misc:Depends},
+         fex-emu (= ${binary:Version})
+Description: Development files for FEX-Emu
+ FEX-Emu is a fast user-mode x86 and x86-64 emulator for AArch64 hosts.
+ .
+ This package contains development headers and libraries needed to
+ build applications using the FEX-Emu core.
+
+Package: fex-emu-binfmt
+Architecture: arm64
+Depends: ${misc:Depends},
+         fex-emu (= ${binary:Version})
+Description: binfmt registration for FEX-Emu
+ Registers FEX-Emu as a binfmt handler so that x86 and x86-64
+ ELF binaries are automatically executed through FEX-Emu.

@@ -14,3 +14,6 @@ RUN apt-get update \
         ninja-build \
         pkgconf \
     && rm -rf /var/lib/apt/lists/*
+
+ENV CC=clang
+ENV CXX=clang++
